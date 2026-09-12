@@ -1,25 +1,63 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import { useState } from "react";
+import { ArrowDownToLine, Check, ChevronDown, Github, Menu, ShieldCheck, Smartphone, X } from "lucide-react";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
+const APK_URL = "https://github.com/MasterJediTek/jedi-medivac-download/releases/download/v1.0.32/medivac-one-v1_0_32.apk";
+const steps = [
+  ["01", "Download", "Tap the download button and save the APK."],
+  ["02", "Allow installs", "If prompted, allow your browser to install unknown apps."],
+  ["03", "Open Medivac One", "Tap the downloaded file and follow Android's install flow."],
+];
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="min-h-screen flex flex-col">
-      <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
-      </main>
-    </div>
+    <main className="min-h-screen overflow-hidden bg-[#071016] text-[#f1f7f3] selection:bg-[#1bda91] selection:text-[#06100c]">
+      <div className="pointer-events-none fixed inset-0 opacity-30 [background-image:radial-gradient(#8aa196_0.7px,transparent_0.7px)] [background-size:22px_22px]" />
+      <header className="relative z-10 border-b border-white/10 bg-[#071016]/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
+          <a href="#top" className="flex items-center gap-3" aria-label="Medivac One home">
+            <span className="grid size-10 place-items-center rounded-xl bg-[#1bda91] text-[#06100c] shadow-[0_0_28px_rgba(27,218,145,.25)]"><ShieldCheck size={22} strokeWidth={2.5} /></span>
+            <span className="text-sm font-semibold tracking-[0.2em] text-[#dceae2]">MEDIVAC <span className="text-[#1bda91]">ONE</span></span>
+          </a>
+          <nav className="hidden items-center gap-8 text-sm text-[#9fb3a8] md:flex">
+            <a className="transition hover:text-white" href="#install">Install guide</a>
+            <a className="transition hover:text-white" href="#release">Release notes</a>
+            <a className="transition hover:text-white" href="https://github.com/MasterJediTek/jedi-medivac-download" target="_blank" rel="noreferrer">GitHub</a>
+          </nav>
+          <button className="rounded-lg p-2 text-[#9fb3a8] md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X size={22} /> : <Menu size={22} />}</button>
+        </div>
+        {menuOpen && <nav className="border-t border-white/10 px-5 py-4 md:hidden"><div className="flex flex-col gap-4 text-sm text-[#b9c9c0]"><a href="#install" onClick={() => setMenuOpen(false)}>Install guide</a><a href="#release" onClick={() => setMenuOpen(false)}>Release notes</a><a href="https://github.com/MasterJediTek/jedi-medivac-download" target="_blank" rel="noreferrer">GitHub</a></div></nav>}
+      </header>
+
+      <section id="top" className="relative z-0 mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-20 sm:px-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-20 lg:pb-32 lg:pt-28">
+        <div>
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#1bda91]/30 bg-[#1bda91]/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#62eab2]"><span className="size-1.5 animate-pulse rounded-full bg-[#1bda91]" />Free-track release · v1.0.32</div>
+          <h1 className="max-w-3xl text-5xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-7xl lg:text-[6.6rem]">Care, <em className="font-serif font-normal text-[#1bda91]">ready</em> when you are.</h1>
+          <p className="mt-8 max-w-xl text-lg leading-8 text-[#9fb3a8]">The official Medivac One Android build is available to download free from the JEDI infrastructure. Fast, direct, and open to every compatible device.</p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a href={APK_URL} download className="group inline-flex items-center justify-center gap-3 rounded-xl bg-[#1bda91] px-6 py-4 text-sm font-bold text-[#06100c] shadow-[0_12px_40px_rgba(27,218,145,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#69efb9] active:scale-[.98]"><ArrowDownToLine size={19} />Download APK<span className="text-[#0b6547]">↗</span></a>
+            <a href="#install" className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-4 text-sm font-semibold text-[#c8d7cf] transition hover:border-white/30 hover:bg-white/5">How to install <ChevronDown size={16} /></a>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#789087]"><span className="inline-flex items-center gap-2"><Check size={15} className="text-[#1bda91]" />Free forever</span><span className="inline-flex items-center gap-2"><Check size={15} className="text-[#1bda91]" />Direct APK</span><span className="inline-flex items-center gap-2"><Check size={15} className="text-[#1bda91]" />SHA verified</span></div>
+        </div>
+        <div className="relative mx-auto w-full max-w-[440px] lg:ml-auto">
+          <div className="absolute -inset-12 rounded-full bg-[#1bda91]/10 blur-3xl" />
+          <div className="relative aspect-[.78] overflow-hidden rounded-[2.5rem] border border-white/15 bg-[#0d1a1d] p-3 shadow-2xl shadow-black/50">
+            <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-[#1bda91]/15 bg-gradient-to-b from-[#133029] via-[#0d1b1d] to-[#071016]">
+              <div className="flex items-center justify-between px-6 py-5 text-[10px] uppercase tracking-[.22em] text-[#789087]"><span>Medivac One</span><span className="flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-[#1bda91]" />Online</span></div>
+              <div className="flex flex-1 flex-col justify-end p-7"><div className="mb-auto mt-9 grid place-items-center"><div className="grid size-28 place-items-center rounded-full border border-[#1bda91]/30 bg-[#1bda91]/10 shadow-[0_0_70px_rgba(27,218,145,.18)]"><Smartphone size={45} strokeWidth={1.25} className="text-[#1bda91]" /></div></div><p className="text-xs uppercase tracking-[.2em] text-[#789087]">field readiness</p><p className="mt-2 text-3xl font-semibold tracking-tight">Move with confidence.</p><div className="mt-7 h-1 overflow-hidden rounded-full bg-white/10"><div className="h-full w-[82%] rounded-full bg-[#1bda91]" /></div><div className="mt-3 flex justify-between text-xs text-[#789087]"><span>Readiness</span><span className="text-[#1bda91]">82%</span></div></div>
+            </div>
+          </div>
+          <div className="absolute -bottom-5 -left-5 rounded-2xl border border-white/10 bg-[#10201f]/95 px-4 py-3 shadow-xl backdrop-blur"><p className="text-[10px] uppercase tracking-[.18em] text-[#789087]">Package</p><p className="mt-1 font-mono text-sm text-[#dceae2]">medivac-one.apk</p></div>
+        </div>
+      </section>
+
+      <section id="install" className="relative border-y border-white/10 bg-[#0a1519] py-20 sm:py-24"><div className="mx-auto max-w-7xl px-5 sm:px-8"><div className="max-w-2xl"><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#1bda91]">Three steps</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] sm:text-5xl">From link to launch.</h2><p className="mt-5 text-[#9fb3a8]">Android may ask for one permission the first time you install an APK outside the Play Store. That is expected.</p></div><div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3">{steps.map(([number, title, copy]) => <article key={number} className="bg-[#0a1519] p-7 transition hover:bg-[#10201f]"><span className="font-mono text-sm text-[#1bda91]">{number}</span><h3 className="mt-12 text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-[#8fa39a]">{copy}</p></article>)}</div></div></section>
+
+      <section id="release" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24"><div className="grid gap-12 lg:grid-cols-[1fr_.8fr]"><div><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#1bda91]">Release notes</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] sm:text-5xl">A clean, direct build.</h2><p className="mt-5 max-w-xl text-[#9fb3a8]">This free-track release is distributed through GitHub Releases so the package stays transparent, stable, and easy to verify.</p></div><div className="rounded-2xl border border-white/10 bg-white/[.03] p-6"><div className="flex items-center justify-between border-b border-white/10 pb-4"><span className="text-sm font-semibold">v1.0.32</span><span className="rounded-full bg-[#1bda91]/10 px-3 py-1 text-xs text-[#62eab2]">Latest</span></div><dl className="mt-5 space-y-4 text-sm"><div className="flex justify-between gap-4"><dt className="text-[#789087]">Format</dt><dd className="font-mono text-[#dceae2]">Android APK</dd></div><div className="flex justify-between gap-4"><dt className="text-[#789087]">Distribution</dt><dd className="text-[#dceae2]">Free track</dd></div><div className="flex justify-between gap-4"><dt className="text-[#789087]">Source</dt><dd><a className="inline-flex items-center gap-1 text-[#1bda91] hover:underline" href="https://github.com/MasterJediTek/jedi-medivac-download" target="_blank" rel="noreferrer">GitHub <Github size={14} /></a></dd></div></dl></div></div></section>
+      <footer className="border-t border-white/10 px-5 py-7 sm:px-8"><div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-[#789087] sm:flex-row sm:items-center sm:justify-between"><span>© 2026 JEDI · Medivac One</span><span>Android installation requires a compatible device.</span></div></footer>
+    </main>
   );
 }
+
+export { APK_URL };
