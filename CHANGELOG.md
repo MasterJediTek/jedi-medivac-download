@@ -9,6 +9,8 @@
 - Added a QR code for opening the download page on mobile devices.
 - Added release notes and a visible changelog section.
 - Added a manually triggered GitHub Actions workflow for packaging future APK URLs with a checksum manifest.
+- Added a support and troubleshooting FAQ covering blocked installs, storage, downloads, and issue reporting.
+- Added automated release validation for APK ZIP integrity, Android manifest, DEX, signature metadata, size, and checksum.
 
 ### Current artifact
 
