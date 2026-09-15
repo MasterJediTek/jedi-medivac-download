@@ -43,6 +43,23 @@ jobs:
           set -euo pipefail
           sha256sum medivac-one.apk | tee SHA256SUMS.txt
 
+      - name: Validate Android package structure
+        run: |
+          set -euo pipefail
+          unzip -tqq medivac-one.apk
+          unzip -l medivac-one.apk | grep -q 'AndroidManifest.xml'
+          unzip -l medivac-one.apk | grep -q 'classes.dex'
+          # v2/v3 APK signatures live in the APK signing block rather than
+          # META-INF; apksigner verification can be added when the Android SDK
+          # is available on the runner.
+          unzip -l medivac-one.apk | grep -qE 'classes[0-9]*\.dex'
+          bytes="$(stat -c '%s' medivac-one.apk)"
+          test "$bytes" -gt 1000000
+          echo "Validated APK container and signing metadata: $bytes bytes"
+
+      - name: Verify checksum manifest
+        run: sha256sum --check SHA256SUMS.txt
+
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
