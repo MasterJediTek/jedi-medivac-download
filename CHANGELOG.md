@@ -13,9 +13,14 @@
 - Added automated release validation for APK ZIP integrity, Android manifest, DEX, signature metadata, size, and checksum.
 - Added a device compatibility matrix for phones, tablets, architectures, storage, and Play Store independence.
 - Added official Android `apksigner` verification to the GitHub Actions release gate using Android Build Tools 35.0.0.
+- Verified the current APK with APK Signature Scheme v2 and recorded its signer fingerprint.
+- Confirmed native library coverage for `arm64-v8a` and `armeabi-v7a`.
 
 ### Current artifact
 
 - Version: `v1.0.32`
 - Size: `54.6 MB`
 - SHA-256: `4bb03877a79c02310a074018e26d7a090d713769b264b4918cfd282d99822a0c`
+- Signing certificate SHA-256: `e2372158de8c61211222da725b41d6e2459c459153c476463617bcb2731d3fbf`
+- APK signature: v2 verified; signer: `CN=Manus App`
+- Native ABIs: `arm64-v8a`, `armeabi-v7a`
