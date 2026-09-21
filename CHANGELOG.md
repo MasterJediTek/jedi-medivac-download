@@ -11,6 +11,8 @@
 - Added a manually triggered GitHub Actions workflow for packaging future APK URLs with a checksum manifest.
 - Added a support and troubleshooting FAQ covering blocked installs, storage, downloads, and issue reporting.
 - Added automated release validation for APK ZIP integrity, Android manifest, DEX, signature metadata, size, and checksum.
+- Added a device compatibility matrix for phones, tablets, architectures, storage, and Play Store independence.
+- Added official Android `apksigner` verification to the GitHub Actions release gate using Android Build Tools 35.0.0.
 
 ### Current artifact
 
