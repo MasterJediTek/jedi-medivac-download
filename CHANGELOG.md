@@ -24,3 +24,11 @@
 - Signing certificate SHA-256: `e2372158de8c61211222da725b41d6e2459c459153c476463617bcb2731d3fbf`
 - APK signature: v2 verified; signer: `CN=Manus App`
 - Native ABIs: `arm64-v8a`, `armeabi-v7a`
+
+## JEDI//HUB marketplace update — 2026-09-22
+
+- Rescoped the landing page into a futuristic free-track marketplace and control hub.
+- Added real GitHub release download cards for Medivac One and MediVacAlpha.
+- Added source-only entries for authorized JEDI ecosystem repositories, clearly marked when no public release asset exists.
+- Added local registration UX, install/test triggers, release verification surfaces, and a payment connector status gate.
+- Uploaded the newly supplied APK as a byte-identical release mirror; the SHA-256 remains unchanged.
